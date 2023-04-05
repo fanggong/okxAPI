@@ -67,7 +67,7 @@ websocketAPIprivate <- R6::R6Class(
         login_msg <- jsonlite::toJSON(login_msg, auto_unbox = TRUE)
         self$ws$send(login_msg)
       } else {
-        stop("Connect is not open")
+        stop("Connection is not open")
       }
     },
     on_open = function(...) {
