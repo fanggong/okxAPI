@@ -1,3 +1,25 @@
+#' Retrieve the position data
+#'
+#' Wrapper of API [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history).
+#'
+#' @param api_key Okx API key.
+#' @param secret_key Okx API secret key.
+#' @param passphrase Okx API passphrase.
+#' @param count Retrieve position data for a specified number of past days, with a maximum of 90(days)
+#' @param period Due to the 'Number of results per request' limitation of the API,
+#' the `period` parameter must be specified to ensure that the number of position data entries within each period does not exceed 100.
+#' @param ... Other request parameters to be passed, See
+#' [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history) for more information.
+#'
+#' @return position data
+#'
+#' @examples
+#' library(okxAPI)
+#' positions <- get_positions_history(
+#'   api_key, secret_key, passphrase, count = 90, period = 10,
+#'   instType = "SWAP", mgnMode = "isolated"
+#' )
+#'
 #' @import data.table
 #' @export
 get_positions_history <- function(
@@ -29,6 +51,28 @@ get_positions_history <- function(
   dat
 }
 
+#' Retrieve the candlestick charts
+#'
+#' Wrapper of API [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks)
+#' and [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history).
+#'
+#' @param api_key Okx API key.
+#' @param secret_key Okx API secret key.
+#' @param passphrase Okx API passphrase.
+#' @param bar Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D/1W.
+#' @param count Number of Bars.
+#' @param instId Instrument ID, e.g. BTC-USDT-SWAP
+#' @param ... Other request parameters to be passed, See [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history) for more information.
+#'
+#' @return candlestick charts data
+#'
+#' @examples
+#' library(okxAPI)
+#' candles <- get_history_candles(
+#'   api_key, secret_key, passphrase, bar = "1m",
+#'   count = 24*60, instId = "CFX-USDT-SWAP"
+#' )
+#'
 #' @import data.table
 #' @export
 get_history_candles <- function(
@@ -70,7 +114,7 @@ get_history_candles <- function(
   dat <- lapply(dat, as.data.frame, col.names = c(col_names))
   dat <- data.table::rbindlist(dat)
   dat$ts <- ts2time(dat$ts)
-  to_numeric <- c("open", "high", "low", "close", "vol","volCcy", "volCcyQuote")
+  to_numeric <- c("open", "high", "low", "close", "vol", "volCcy", "volCcyQuote")
   dat[, (to_numeric) := lapply(.SD, as.numeric), .SDcols = to_numeric]
   dat
 }

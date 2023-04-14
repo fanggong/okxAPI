@@ -1,9 +1,9 @@
 Package: okxAPI
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Interface to okx API
+Version: 0.1.0
 Authors@R: 
     person(family = "Fang", given = "Yongchao", email = "yongchao.fang@outlook.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: An interface to the [okx API](https://www.okx.com/docs-v5/en/#overview), including REST API and WebSocket API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
