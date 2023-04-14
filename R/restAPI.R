@@ -169,7 +169,18 @@ restAPImarket <- R6::R6Class(
         api = "/api/v5/market/books", method = "GET", process = process,
         instId = instId, ...
       )
+    },
+    candles = function(instId, process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/market/candles", method = "GET", process = process,
+        instId = instId, ...
+      )
+    },
+    history_candles = function(instId, process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/market/history-candles", method = "GET", process = process,
+        instId = instId, ...
+      )
     }
   )
 )
-

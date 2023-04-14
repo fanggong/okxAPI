@@ -1,34 +1,30 @@
-#' @export
-get_positions_history <- function(
-  api_key, secret_key, passphrase, forward = 90, period = 10, ...
-) {
-  account <- restAPIaccount$new(api_key, secret_key, passphrase)
-  now <- as.integer(Sys.time())
-  start <- now - forward*24*60*60
-  end <- start + period*24*60*60 - 1
-  dat <- list()
-  while (start < now) {
-    result <- account$positions_history(
-      before = as.character(1000*start), after = as.character(1000*end), ...
-    )
-    if (result$code == "0") {
-      dat <- c(dat, result$data)
-      start_time <- as.POSIXct(start, origin = "1970-01-01 00:00:00", tz = "Asia/Shanghai")
-      end_time <- as.POSIXct(end, origin = "1970-01-01 00:00:00", tz = "Asia/Shanghai")
-      message("From ", start_time, " to ", end_time, " complete")
-      start <- end + 1
-      end <- start + period*24*60*60 - 1
-      Sys.sleep(15)
-    }
-  }
-  dat <- lapply(dat, data.table::as.data.table)
-  dat <- data.table::rbindlist(dat)
-  dat$cTime <- as.POSIXct(as.numeric(dat$cTime)/1000, origin = "1970-01-01 00:00:00", tz = "Asia/Shanghai")
-  dat$uTime <- as.POSIXct(as.numeric(dat$uTime)/1000, origin = "1970-01-01 00:00:00", tz = "Asia/Shanghai")
-  to_numeric <- c("closeAvgPx", "closeTotalPos", "lever", "openAvgPx", "openMaxPos",
-                  "pnl", "pnlRatio")
-  dat[, (to_numeric) := lapply(.SD, as.numeric), .SDcols = to_numeric]
-  dat
+
+ts2time <- function(timestamp) {
+  timestamp <- substr(as.character(timestamp), 1, 10)
+  as.POSIXct(as.integer(timestamp), origin = "1970-01-01 00:00:00", tz = "Asia/Shanghai")
 }
 
 
+time2ts <- function(time, type = c("s", "ms")) {
+  if (!inherits(time, "POSIXt")) {
+    stop("parameter time must be of POSIXt type")
+  } else {
+    type <- match.arg(type)
+    time <- as.integer(time)
+    if (type == "ms") {
+      time <- time * 1000
+    }
+    time
+  }
+}
+
+
+str2period <- function(str) {
+  time_vec <- c(
+    "1m" = 60, "3m" = 3*60, "5m" = 5*60, "15m" = 15*60, "30m" = 30*60,
+    "1H" = 1*60*60, "2H" = 2*60*60, "4H" = 4*60*60,
+    "6H" = 6*60*60, "12H" = 12*60*60,
+    "1D" = 1*24*60*60, "2D" = 2*24*60*60, "3D" = 3*24*60*60
+  )
+  time_vec[str]
+}
