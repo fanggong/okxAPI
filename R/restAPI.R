@@ -1,33 +1,75 @@
-#' @name restAPI
+#' @title restAPI Class
 #'
-#' REST API for (Okx exchange v5 API)[https://www.okx.com/docs-v5/en/]
+#' @description Base class for [Okx exchange v5 API](https://www.okx.com/docs-v5/en/).
 #'
-#' @param api_key Okx API key.
-#' @param secret_key Okx API secret key.
-#' @param passphrase Okx API passphrase.
-#' @param simulate Use demo trading services.
+#' @details You can implement all REST API requests in Okx exchange by inheriting the \code{restAPI} class.
+#' Please refer to the example provided at the end of the document.
 #'
+#' For commonly used interfaces, they have been implemented in this package.
+#' The naming convention is as follows: for "/api/v5/AAA/BBB", a new class named \code{restAPIAAA},
+#' which inherits from \code{restAPI}, has been defined in this package.
+#' The \code{BBB} method in this new class is used to call the API.
+#'
+#' @examples
+#' # for [Get currencies](https://www.okx.com/docs-v5/en/#rest-api-funding-get-currencies)
+#' # you can define the class like this
+#' myRestAPI <- R6::R6Class(
+#'   inherit = restAPI,
+#'   public = list(
+#'     get_currencies = function(ccy, process = "identity") {
+#'       self$get_result(
+#'         api = "/api/v5/asset/currencies", method = "GET", process = process,
+#'         ccy = ccy
+#'       )
+#'     }
+#'   )
+#' )
+#' # And call it like this
+#' tmp <- myRestAPI$new(api_key, secret_key, passphrase)
+#' tmp$get_currencies("BTC")
+#'
+#' @seealso
+#' \code{\link{restAPItrade}}
+#' \code{\link{restAPIaccount}}
+#' \code{\link{restAPImarket}}
+#'
+#' @import R6 httr jsonlite base64enc base64enc
 #' @export
 restAPI <- R6::R6Class(
   "restAPI",
   public = list(
+    #' @field url exchange REST API url, which is https://www.okx.com.
     url = "https://www.okx.com",
+    #' @field api_key Okx API key.
     api_key = NA,
+    #' @field secret_key Okx API secret key.
     secret_key = NA,
+    #' @field passphrase Okx API passphrase.
     passphrase = NA,
+    #' @field simulate Whether to use demo trading service.
     simulate = NA,
+    #' @description Create a new REST API object.
+    #' @param api_key Okx API key.
+    #' @param secret_key Okx API secret key.
+    #' @param passphrase Okx API passphrase.
+    #' @param simulate Whether to use demo trading service.
     initialize = function(api_key, secret_key, passphrase, simulate = FALSE) {
       self$api_key <- api_key
       self$secret_key <- secret_key
       self$passphrase <- passphrase
       self$simulate <- simulate
     },
+    #' @description Get UTC timestamp.
     get_timestamp = function() {
       timestamp <- as.numeric(Sys.time()) * 1000
       timestamp <- as.POSIXct(timestamp / 1000, origin = "1970-01-01", tz = "UTC")
       timestamp <- format(timestamp, format = "%Y-%m-%dT%H:%M:%OS3Z", usetz = FALSE)
       timestamp
     },
+    #' @description Get request path.
+    #' @param api Request api e.g. /api/v5/account/positions-history.
+    #' @param method Request method, \code{GET} or \code{POST}.
+    #' @param ... Other request parameters.
     get_request_path = function(api, method = c("GET", "POST"), ...) {
       method <- match.arg(method)
       if (method == "GET") {
@@ -48,6 +90,9 @@ restAPI <- R6::R6Class(
       }
       request_path
     },
+    #' @description Get request body.
+    #' @param method Request method, \code{GET} or \code{POST}.
+    #' @param ... Other request parameters.
     get_body = function(method = c("GET", "POST"), ...) {
       method <- match.arg(method)
       if (method == "GET") {
@@ -59,13 +104,24 @@ restAPI <- R6::R6Class(
       }
       body
     },
+    #' @description Get the signing messages.
+    #' @param timestamp Retrieve through method \code{get_timestamp}.
+    #' @param request_path Retrieve through method \code{get_request_path}.
+    #' @param body Retrieve through method \code{get_body}.
+    #' @param method Request method, \code{GET} or \code{POST}.
     get_message = function(timestamp, request_path, body, method = c("GET", "POST")) {
       method <- match.arg(method)
       paste0(timestamp, method, request_path, body)
     },
+    #' @description Get the signature.
+    #' @param msg Retrieve through method \code{get_message}.
+    #' @param secret_key Okx API secret key.
     get_signature = function(msg, secret_key = self$secret_key) {
-      base64enc::base64encode(digest::hmac(secret_key, msg, algo = "sha256", raw = TRUE))
+      base64enc::base64encode(base64enc::hmac(secret_key, msg, algo = "sha256", raw = TRUE))
     },
+    #' @description Get request headers.
+    #' @param timestamp Retrieve through method \code{get_timestamp}.
+    #' @param msg Retrieve through method \code{get_message}.
     get_header = function(timestamp, msg) {
       headers <- c(
         "OK-ACCESS-KEY" = self$api_key,
@@ -79,6 +135,11 @@ restAPI <- R6::R6Class(
       }
       headers
     },
+    #' @description Retrieve data from api.
+    #' @param api Request api e.g. /api/v5/account/positions-history.
+    #' @param method Request method, \code{GET} or \code{POST}.
+    #' @param process A function to process the data received from the API.
+    #' @param ... Other request parameters.
     get_result = function(api, method = c("GET", "POST"), process, ...) {
       method <- match.arg(method)
       timestamp <- self$get_timestamp()
@@ -109,11 +170,27 @@ restAPI <- R6::R6Class(
   )
 )
 
+
+#' @title restAPItrade Class
+#'
+#' @description Wrapper for [REST API TRADE](https://www.okx.com/docs-v5/en/#rest-api-trade).
+#'
+#' @import R6
 #' @export
 restAPItrade <- R6::R6Class(
   "restAPItrade",
   inherit = restAPI,
   public = list(
+    #' @description See [Place order](https://www.okx.com/docs-v5/en/#rest-api-trade-place-order) for more information.
+    #' @param instId Instrument ID, e.g. BTC-USD-190927-5000-C.
+    #' @param tdMode Trade mode. Margin mode: \code{cross} or \code{isolated.} Non-Margin mode: \code{cash}.
+    #' @param side Order side, \code{buy} or \code{sell}.
+    #' @param sz Quantity to buy or sell.
+    #' @param ordType Order type. \code{market}: Market order, \code{limit}: Limit order, \code{post_only}: Post-only order,
+    #' \code{fok}: Fill-or-kill order, \code{ioc}: Immediate-or-cancel order,
+    #' \code{optimal_limit_ioc}: Market order with immediate-or-cancel order (applicable only to Futures and Perpetual swap).
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
     order  = function(
       instId, tdMode = c("isolated", "cross", "cash"), side = c("buy", "sell"), sz,
       ordType = c("market", "limit", "post_only", "fok", "ioc", "optimal_limit_ioc"),
@@ -128,9 +205,12 @@ restAPItrade <- R6::R6Class(
         instId = instId, tdMode = tdMode, side = side, sz = sz, ordType = ordType, ...
       )
     },
-    # 撤单返回sCode等于0不能严格认为该订单已经被撤销
-    # 只表示您的撤单请求被系统服务器所接受
-    # 撤单结果以订单频道推送的状态或者查询订单状态为准
+    #' @description See [Cancel order](https://www.okx.com/docs-v5/en/#rest-api-trade-cancel-order) for more information.
+    #' @param instId Instrument ID, e.g. BTC-USD-190927.
+    #' @param ordId Order ID, Either \code{ordId} or \code{clOrdId} is required. If both are passed, \code{ordId} will be used.
+    #' @param clOrdId Client Order ID as assigned by the client.
+    #' @param process A function to process the data received from the API. Default to \code{identity}
+    #' @param ... Other request parameters.
     cancel_order = function(instId, ordId, clOrdId, process = "identity", ...) {
       if (missing(ordId)) ordId <- NA
       if (missing(clOrdId)) clOrdId <- NA
@@ -143,6 +223,11 @@ restAPItrade <- R6::R6Class(
 )
 
 
+#' @title restAPIaccount Class
+#'
+#' @description Wrapper for [REST API ACCOUNT](https://www.okx.com/docs-v5/en/#rest-api-account).
+#'
+#' @import R6
 #' @export
 restAPIaccount <- R6::R6Class(
   "restAPIaccount",

@@ -33,7 +33,6 @@ myRestAPI <- R6::R6Class(
 tmp <- myRestAPI$new(api_key, secret_key, passphrase)
 tmp$get_currencies("BTC")
 
-
 }
 \seealso{
 \code{\link{restAPItrade}}
@@ -43,7 +42,7 @@ tmp$get_currencies("BTC")
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{url}}{Okx exchange REST API url, which is https://www.okx.com.}
+\item{\code{url}}{exchange REST API url, which is https://www.okx.com.}
 
 \item{\code{api_key}}{Okx API key.}
 
@@ -116,7 +115,7 @@ Get request path.
 \describe{
 \item{\code{api}}{Request api e.g. /api/v5/account/positions-history.}
 
-\item{\code{method}}{Request method, \code{GET} or \code{POST.}}
+\item{\code{method}}{Request method, \code{GET} or \code{POST}.}
 
 \item{\code{...}}{Other request parameters.}
 }
@@ -135,7 +134,7 @@ Get request body.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{method}}{Request method, \code{GET} or \code{POST.}}
+\item{\code{method}}{Request method, \code{GET} or \code{POST}.}
 
 \item{\code{...}}{Other request parameters.}
 }
@@ -160,7 +159,7 @@ Get the signing messages.
 
 \item{\code{body}}{Retrieve through method \code{get_body}.}
 
-\item{\code{method}}{Request method, \code{GET} or \code{POST.}}
+\item{\code{method}}{Request method, \code{GET} or \code{POST}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -217,7 +216,7 @@ Retrieve data from api.
 \describe{
 \item{\code{api}}{Request api e.g. /api/v5/account/positions-history.}
 
-\item{\code{method}}{Request method, \code{GET} or \code{POST.}}
+\item{\code{method}}{Request method, \code{GET} or \code{POST}.}
 
 \item{\code{process}}{A function to process the data received from the API.}
 

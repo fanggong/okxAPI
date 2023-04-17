@@ -51,19 +51,19 @@ See \href{https://www.okx.com/docs-v5/en/#rest-api-trade-place-order}{Place orde
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{instId}}{Instrument ID, e.g. BTC-USD-190927-5000-C}
+\item{\code{instId}}{Instrument ID, e.g. BTC-USD-190927-5000-C.}
 
-\item{\code{tdMode}}{Trade mode. Margin mode: \code{cross} or \code{isolated.} Non-Margin mode: \code{cash.}}
+\item{\code{tdMode}}{Trade mode. Margin mode: \code{cross} or \code{isolated.} Non-Margin mode: \code{cash}.}
 
-\item{\code{side}}{Order side, \code{buy} or \code{sell}}
+\item{\code{side}}{Order side, \code{buy} or \code{sell}.}
 
-\item{\code{sz}}{Quantity to buy or sell}
+\item{\code{sz}}{Quantity to buy or sell.}
 
-\item{\code{ordType}}{Order type. \code{market}: Market order, \code{limit}: Limit order, \code{post_only}: Post-only order
+\item{\code{ordType}}{Order type. \code{market}: Market order, \code{limit}: Limit order, \code{post_only}: Post-only order,
 \code{fok}: Fill-or-kill order, \code{ioc}: Immediate-or-cancel order,
 \code{optimal_limit_ioc}: Market order with immediate-or-cancel order (applicable only to Futures and Perpetual swap).}
 
-\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}}
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
 
 \item{\code{...}}{Other request parameters.}
 }
