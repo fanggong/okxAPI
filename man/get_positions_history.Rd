@@ -29,10 +29,10 @@ the \code{period} parameter must be specified to ensure that the number of posit
 \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history} for more information.}
 }
 \value{
-position data
+Position data
 }
 \description{
-Wrapper of API \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history}.
+Wrapper for API \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history}.
 }
 \examples{
 library(okxAPI)

@@ -2,9 +2,12 @@
 
 export(get_history_candles)
 export(get_positions_history)
+export(restAPI)
 export(restAPIaccount)
 export(restAPImarket)
 export(restAPItrade)
 export(websocketAPIprivate)
 export(websocketAPIpublic)
+import(R6)
 import(data.table)
+import(httr)

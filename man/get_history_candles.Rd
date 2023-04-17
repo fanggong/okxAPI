@@ -21,7 +21,7 @@ get_history_candles(
 
 \item{passphrase}{Okx API passphrase.}
 
-\item{bar}{Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D/1W.}
+\item{bar}{Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D.}
 
 \item{count}{Number of Bars.}
 
@@ -30,10 +30,10 @@ get_history_candles(
 \item{...}{Other request parameters to be passed, See \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history}{Get candlesticks history} for more information.}
 }
 \value{
-candlestick charts data
+Candlestick charts data
 }
 \description{
-Wrapper of API \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks}{Get candlesticks}
+Wrapper for API \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks}{Get candlesticks}
 and \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history}{Get candlesticks history}.
 }
 \examples{

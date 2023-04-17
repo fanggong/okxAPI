@@ -1,17 +1,28 @@
-#' Retrieve the position data
+#' @name get_functions
 #'
-#' Wrapper of API [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history).
+#' @title Wrapper for some frequently used APIs to get data easily
+#'
+#' @description The main purpose is to handle APIs that have limitations on the number of results returned per single request.
+#' @seealso
+#' \code{\link{get_positions_history}}
+#' \code{\link{get_history_candles}}
+NULL
+
+
+#' @title Retrieve the position data
+#'
+#' @description Wrapper for API [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history).
 #'
 #' @param api_key Okx API key.
 #' @param secret_key Okx API secret key.
 #' @param passphrase Okx API passphrase.
 #' @param count Retrieve position data for a specified number of past days, with a maximum of 90(days)
 #' @param period Due to the 'Number of results per request' limitation of the API,
-#' the `period` parameter must be specified to ensure that the number of position data entries within each period does not exceed 100.
+#' the \code{period} parameter must be specified to ensure that the number of position data entries within each period does not exceed 100.
 #' @param ... Other request parameters to be passed, See
 #' [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history) for more information.
 #'
-#' @return position data
+#' @return Position data
 #'
 #' @examples
 #' library(okxAPI)
@@ -51,20 +62,20 @@ get_positions_history <- function(
   dat
 }
 
-#' Retrieve the candlestick charts
+#' @title Retrieve the candlestick charts
 #'
-#' Wrapper of API [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks)
+#' @description Wrapper for API [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks)
 #' and [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history).
 #'
 #' @param api_key Okx API key.
 #' @param secret_key Okx API secret key.
 #' @param passphrase Okx API passphrase.
-#' @param bar Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D/1W.
+#' @param bar Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D.
 #' @param count Number of Bars.
 #' @param instId Instrument ID, e.g. BTC-USDT-SWAP
 #' @param ... Other request parameters to be passed, See [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history) for more information.
 #'
-#' @return candlestick charts data
+#' @return Candlestick charts data
 #'
 #' @examples
 #' library(okxAPI)

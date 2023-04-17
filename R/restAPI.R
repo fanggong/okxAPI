@@ -1,3 +1,13 @@
+#' @name restAPI
+#'
+#' REST API for (Okx exchange v5 API)[https://www.okx.com/docs-v5/en/]
+#'
+#' @param api_key Okx API key.
+#' @param secret_key Okx API secret key.
+#' @param passphrase Okx API passphrase.
+#' @param simulate Use demo trading services.
+#'
+#' @export
 restAPI <- R6::R6Class(
   "restAPI",
   public = list(
@@ -70,6 +80,7 @@ restAPI <- R6::R6Class(
       headers
     },
     get_result = function(api, method = c("GET", "POST"), process, ...) {
+      method <- match.arg(method)
       timestamp <- self$get_timestamp()
       request_path <- self$get_request_path(api = api, method = method, ...)
       body <- self$get_body(method = method, ...)
