@@ -42,7 +42,7 @@ tmp$get_currencies("BTC")
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{url}}{exchange REST API url, which is https://www.okx.com.}
+\item{\code{url}}{Okx REST API url, which is https://www.okx.com.}
 
 \item{\code{api_key}}{Okx API key.}
 

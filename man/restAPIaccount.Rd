@@ -36,28 +36,58 @@ Wrapper for \href{https://www.okx.com/docs-v5/en/#rest-api-account}{REST API ACC
 \if{html}{\out{<a id="method-restAPIaccount-balance"></a>}}
 \if{latex}{\out{\hypertarget{method-restAPIaccount-balance}{}}}
 \subsection{Method \code{balance()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-balance}{Get balance} for more information.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{restAPIaccount$balance(ccy, process = "identity")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{ccy}}{Single currency or a vector composed of multiple currencies. (no more than 20).}
+
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-restAPIaccount-positions"></a>}}
 \if{latex}{\out{\hypertarget{method-restAPIaccount-positions}{}}}
 \subsection{Method \code{positions()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions}{Get positions} for more information.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{restAPIaccount$positions(process = "identity", ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-restAPIaccount-positions_history"></a>}}
 \if{latex}{\out{\hypertarget{method-restAPIaccount-positions_history}{}}}
 \subsection{Method \code{positions_history()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history} for more information.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{restAPIaccount$positions_history(process = "identity", ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-restAPIaccount-clone"></a>}}

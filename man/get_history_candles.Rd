@@ -25,7 +25,7 @@ get_history_candles(
 
 \item{count}{Number of Bars.}
 
-\item{instId}{Instrument ID, e.g. BTC-USDT-SWAP}
+\item{instId}{Instrument ID, e.g. BTC-USDT-SWAP.}
 
 \item{...}{Other request parameters to be passed, See \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history}{Get candlesticks history} for more information.}
 }

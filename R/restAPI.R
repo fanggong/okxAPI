@@ -38,7 +38,7 @@
 restAPI <- R6::R6Class(
   "restAPI",
   public = list(
-    #' @field url exchange REST API url, which is https://www.okx.com.
+    #' @field url Okx REST API url, which is https://www.okx.com.
     url = "https://www.okx.com",
     #' @field api_key Okx API key.
     api_key = NA,
@@ -209,7 +209,7 @@ restAPItrade <- R6::R6Class(
     #' @param instId Instrument ID, e.g. BTC-USD-190927.
     #' @param ordId Order ID, Either \code{ordId} or \code{clOrdId} is required. If both are passed, \code{ordId} will be used.
     #' @param clOrdId Client Order ID as assigned by the client.
-    #' @param process A function to process the data received from the API. Default to \code{identity}
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
     #' @param ... Other request parameters.
     cancel_order = function(instId, ordId, clOrdId, process = "identity", ...) {
       if (missing(ordId)) ordId <- NA
@@ -222,7 +222,6 @@ restAPItrade <- R6::R6Class(
   )
 )
 
-
 #' @title restAPIaccount Class
 #'
 #' @description Wrapper for [REST API ACCOUNT](https://www.okx.com/docs-v5/en/#rest-api-account).
@@ -233,18 +232,27 @@ restAPIaccount <- R6::R6Class(
   "restAPIaccount",
   inherit = restAPI,
   public = list(
+    #' @description See [Get balance](https://www.okx.com/docs-v5/en/#rest-api-account-get-balance) for more information.
+    #' @param ccy Single currency or a vector composed of multiple currencies. (no more than 20).
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
     balance = function(ccy, process = "identity") {
       self$get_result(
         api = "/api/v5/account/balance", method = "GET", process = process,
         ccy = ccy
       )
     },
+    #' @description See [Get positions](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions) for more information.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
     positions = function(process = "identity", ...) {
       self$get_result(
         api = "/api/v5/account/positions", method = "GET", process = process,
         ...
       )
     },
+    #' @description See [Get positions history](https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history) for more information.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
     positions_history = function(process = "identity", ...) {
       self$get_result(
         api = "/api/v5/account/positions-history", method = "GET", process = process,
@@ -255,23 +263,30 @@ restAPIaccount <- R6::R6Class(
 )
 
 
+#' @title restAPImarket Class
+#'
+#' @description Wrapper for [REST API MARKET](https://www.okx.com/docs-v5/en/#rest-api-market-data).
+#'
+#' @import R6
 #' @export
 restAPImarket <- R6::R6Class(
   "restAPImarket",
   inherit = restAPI,
   public = list(
-    books = function(instId, process = "identity", ...) {
-      self$get_result(
-        api = "/api/v5/market/books", method = "GET", process = process,
-        instId = instId, ...
-      )
-    },
+    #' @description See [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks) for more information.
+    #' @param instId Instrument ID, e.g. BTC-USD-190927-5000-C.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
     candles = function(instId, process = "identity", ...) {
       self$get_result(
         api = "/api/v5/market/candles", method = "GET", process = process,
         instId = instId, ...
       )
     },
+    #' @description See [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history) for more information.
+    #' @param instId Instrument ID, e.g. BTC-USD-190927-5000-C.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
     history_candles = function(instId, process = "identity", ...) {
       self$get_result(
         api = "/api/v5/market/history-candles", method = "GET", process = process,

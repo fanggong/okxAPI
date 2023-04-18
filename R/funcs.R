@@ -72,7 +72,7 @@ get_positions_history <- function(
 #' @param passphrase Okx API passphrase.
 #' @param bar Bar size, the default is 1m, e.g. 1m/3m/5m/15m/30m/1H/2H/4H, Hong Kong time opening price k-line：6H/12H/1D/2D/3D.
 #' @param count Number of Bars.
-#' @param instId Instrument ID, e.g. BTC-USDT-SWAP
+#' @param instId Instrument ID, e.g. BTC-USDT-SWAP.
 #' @param ... Other request parameters to be passed, See [Get candlesticks history](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks-history) for more information.
 #'
 #' @return Candlestick charts data
