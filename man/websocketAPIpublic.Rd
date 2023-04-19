@@ -8,6 +8,7 @@ Public channel of WebSocket API for \href{https://www.okx.com/docs-v5/en/}{Okx e
 See \href{https://www.okx.com/docs-v5/en/#websocket-api-public-channel}{Public Channel} for more information.
 }
 \examples{
+\dontrun{
 tmp <- websocketAPIpublic$new()
 tmp$connect()
 
@@ -30,6 +31,7 @@ tmp$on_message(function(event) {
 tmp$send("ping")
 
 tmp$close()
+}
 
 }
 \section{Public fields}{

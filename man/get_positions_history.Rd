@@ -35,10 +35,11 @@ Position data
 Wrapper for API \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history}.
 }
 \examples{
-library(okxAPI)
+\dontrun{
 positions <- get_positions_history(
   api_key, secret_key, passphrase, count = 90, period = 10,
   instType = "SWAP", mgnMode = "isolated"
 )
+}
 
 }

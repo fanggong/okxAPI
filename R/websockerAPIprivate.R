@@ -4,6 +4,7 @@
 #' See [Private Channel](https://www.okx.com/docs-v5/en/#websocket-api-private-channel) for more information.
 #'
 #' @examples
+#' \dontrun{
 #' tmp <- websocketAPIprivate$new(api_key, secret_key, passphrase)
 #' tmp$connect()
 #' Sys.sleep(1)
@@ -28,6 +29,7 @@
 #' tmp$send("ping")
 #'
 #' tmp$close()
+#' }
 #'
 #' @import R6 websocket base64enc digest
 #' @export

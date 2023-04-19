@@ -16,6 +16,7 @@ which inherits from \code{restAPI}, has been defined in this package.
 The \code{BBB} method in this new class is used to call the API.
 }
 \examples{
+\dontrun{
 # for [Get currencies](https://www.okx.com/docs-v5/en/#rest-api-funding-get-currencies)
 # you can define the class like this
 myRestAPI <- R6::R6Class(
@@ -32,6 +33,7 @@ myRestAPI <- R6::R6Class(
 # And call it like this
 tmp <- myRestAPI$new(api_key, secret_key, passphrase)
 tmp$get_currencies("BTC")
+}
 
 }
 \seealso{

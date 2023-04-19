@@ -4,6 +4,7 @@
 #' See [Public Channel](https://www.okx.com/docs-v5/en/#websocket-api-public-channel) for more information.
 #'
 #' @examples
+#' \dontrun{
 #' tmp <- websocketAPIpublic$new()
 #' tmp$connect()
 #'
@@ -26,6 +27,7 @@
 #' tmp$send("ping")
 #'
 #' tmp$close()
+#' }
 #'
 #' @import R6 websocket
 #' @export

@@ -8,6 +8,7 @@ Private channel of WebSocket API for \href{https://www.okx.com/docs-v5/en/}{Okx 
 See \href{https://www.okx.com/docs-v5/en/#websocket-api-private-channel}{Private Channel} for more information.
 }
 \examples{
+\dontrun{
 tmp <- websocketAPIprivate$new(api_key, secret_key, passphrase)
 tmp$connect()
 Sys.sleep(1)
@@ -32,6 +33,7 @@ tmp$on_message(function(event) {
 tmp$send("ping")
 
 tmp$close()
+}
 
 }
 \section{Public fields}{
