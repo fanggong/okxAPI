@@ -23,7 +23,7 @@ msg <- list(
 msg <- jsonlite::toJSON(msg, auto_unbox = TRUE, pretty = TRUE)
 tmp$send(msg)
 
-# define your own callback function
+# pass your own callback function
 tmp$on_message(function(event) {
   if (event$data == "pong") {
     message("Bingo!!")
@@ -142,7 +142,7 @@ Get the signature.
 \if{html}{\out{<a id="method-websockerAPIprivate-connect"></a>}}
 \if{latex}{\out{\hypertarget{method-websockerAPIprivate-connect}{}}}
 \subsection{Method \code{connect()}}{
-Initiates the connection to the server.
+Initiate the connection to the server.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIprivate$connect()}\if{html}{\out{</div>}}
 }
@@ -235,7 +235,7 @@ describing the reason for the error.
 \if{html}{\out{<a id="method-websockerAPIprivate-send"></a>}}
 \if{latex}{\out{\hypertarget{method-websockerAPIprivate-send}{}}}
 \subsection{Method \code{send()}}{
-Sends a message to the server.
+Send a message to the server.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIprivate$send(msg)}\if{html}{\out{</div>}}
 }
@@ -252,7 +252,7 @@ Sends a message to the server.
 \if{html}{\out{<a id="method-websockerAPIprivate-close"></a>}}
 \if{latex}{\out{\hypertarget{method-websockerAPIprivate-close}{}}}
 \subsection{Method \code{close()}}{
-Closes the connection.
+Close the connection.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIprivate$close()}\if{html}{\out{</div>}}
 }

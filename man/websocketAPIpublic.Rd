@@ -21,7 +21,7 @@ msg <- list(
 msg <- jsonlite::toJSON(msg, auto_unbox = TRUE, pretty = TRUE)
 tmp$send(msg)
 
-# define your own callback function
+# pass your own callback function
 tmp$on_message(function(event) {
   if (event$data == "pong") {
     message("Bingo!!")
@@ -61,7 +61,7 @@ tmp$close()
 \if{html}{\out{<a id="method-websocketAPIpublic-new"></a>}}
 \if{latex}{\out{\hypertarget{method-websocketAPIpublic-new}{}}}
 \subsection{Method \code{new()}}{
-Craeate a new websocketAPIpublic object.
+Create a new websocketAPIpublic object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIpublic$new(simulate = FALSE)}\if{html}{\out{</div>}}
 }
@@ -78,7 +78,7 @@ Craeate a new websocketAPIpublic object.
 \if{html}{\out{<a id="method-websocketAPIpublic-connect"></a>}}
 \if{latex}{\out{\hypertarget{method-websocketAPIpublic-connect}{}}}
 \subsection{Method \code{connect()}}{
-Initiates the connection to the server.
+Initiate the connection to the server.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIpublic$connect()}\if{html}{\out{</div>}}
 }
@@ -161,7 +161,7 @@ describing the reason for the error.
 \if{html}{\out{<a id="method-websocketAPIpublic-send"></a>}}
 \if{latex}{\out{\hypertarget{method-websocketAPIpublic-send}{}}}
 \subsection{Method \code{send()}}{
-Sends a message to the server.
+Send a message to the server.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIpublic$send(msg)}\if{html}{\out{</div>}}
 }
@@ -178,7 +178,7 @@ Sends a message to the server.
 \if{html}{\out{<a id="method-websocketAPIpublic-close"></a>}}
 \if{latex}{\out{\hypertarget{method-websocketAPIpublic-close}{}}}
 \subsection{Method \code{close()}}{
-Closes the connection.
+Close the connection.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{websocketAPIpublic$close()}\if{html}{\out{</div>}}
 }

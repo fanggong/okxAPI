@@ -19,7 +19,7 @@
 #' msg <- jsonlite::toJSON(msg, auto_unbox = TRUE, pretty = TRUE)
 #' tmp$send(msg)
 #'
-#' # define your own callback function
+#' # pass your own callback function
 #' tmp$on_message(function(event) {
 #'   if (event$data == "pong") {
 #'     message("Bingo!!")
@@ -76,7 +76,7 @@ websocketAPIprivate <- R6::R6Class(
         secret_key, msg, algo = "sha256", raw = TRUE
       ))
     },
-    #' @description Initiates the connection to the server.
+    #' @description Initiate the connection to the server.
     connect = function() {
       self$ws$onOpen(function(event) {
         message("Connection opened")
@@ -146,12 +146,12 @@ websocketAPIprivate <- R6::R6Class(
     on_error = function(func) {
       self$ws$onError(func)
     },
-    #' @description Sends a message to the server.
+    #' @description Send a message to the server.
     #' @param msg Messages.
     send = function(msg) {
       self$ws$send(msg)
     },
-    #' @description Closes the connection.
+    #' @description Close the connection.
     close = function() {
       self$ws$close()
     }
