@@ -1,5 +1,5 @@
 Package: okxAPI
-Title: An Unofficial Wrapper for Okx Exchange V5 API<Https://Www.okx.com/Docs-V5/en/>
+Title: An Unofficial Wrapper for Okx Exchange V5 API<https://www.okx.com/docs-v5/en/>
 Version: 0.1.1
 Authors@R: 
     person(family = "Fang", given = "Yongchao", email = "yongchao.fang@outlook.com", role = c("aut", "cre", "cph"))
