@@ -27,7 +27,7 @@ tmp$send(msg)
 # pass your own callback function
 tmp$on_message(function(event) {
   if (event$data == "pong") {
-    message("Bingo!!")
+    cat("Bingo!!\n")
   }
 })
 tmp$send("ping")

@@ -23,7 +23,7 @@
 #' # pass your own callback function
 #' tmp$on_message(function(event) {
 #'   if (event$data == "pong") {
-#'     message("Bingo!!")
+#'     cat("Bingo!!\n")
 #'   }
 #' })
 #' tmp$send("ping")
@@ -81,19 +81,19 @@ websocketAPIprivate <- R6::R6Class(
     #' @description Initiate the connection to the server.
     connect = function() {
       self$ws$onOpen(function(event) {
-        message("Connection opened")
+        cat("Connection opened\n")
       })
 
       self$ws$onMessage(function(event) {
-        message("Client got msg: ", event$data)
+        cat("Client got msg: ", event$data, "\n")
       })
 
       self$ws$onClose(function(event) {
-        message("Client disconnected with code ", event$code, ": ", event$reason)
+        cat("Client disconnected with code ", event$code, ": ", event$reason, "\n")
       })
 
       self$ws$onError(function(event) {
-        cat("Client failed to connect: ", event$message,)
+        cat("Client failed to connect: ", event$message, "\n")
       })
 
       self$ws$connect()

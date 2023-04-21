@@ -1,9 +1,9 @@
 Package: okxAPI
-Title: An Unofficial Wrapper for Okx Exchange V5 API
+Title: An Unofficial Wrapper for 'okx exchange v5' API
 Version: 0.1.1
 Authors@R: 
     person(family = "Fang", given = "Yongchao", email = "yongchao.fang@outlook.com", role = c("aut", "cre", "cph"))
-Description: An unofficial wrapper for 'Okx exchange v5 API' <https://www.okx.com/docs-v5/en/>, including REST API and WebSocket API.
+Description: An unofficial wrapper for 'okx exchange v5' API <https://www.okx.com/docs-v5/en/>, including 'REST' API and 'WebSocket' API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

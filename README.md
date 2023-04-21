@@ -74,7 +74,7 @@ Pass your own callback function
 ``` r
 tmp$on_message(function(event) {
   if (event$data == "pong") {
-    message("Bingo!!")
+    cat("Bingo!!")
   }
 })
 tmp$send("ping")
@@ -117,7 +117,7 @@ Pass your own callback function.
 ``` r
 tmp$on_message(function(event) {
   if (event$data == "pong") {
-    message("Bingo!!")
+    cat("Bingo!!")
   }
 })
 tmp$send("ping")
