@@ -5,6 +5,8 @@ Authors@R:
     person(family = "Fang", given = "Yongchao", email = "yongchao.fang@outlook.com", role = c("aut", "cre", "cph"))
 Description: An unofficial wrapper for 'okx exchange v5' API <https://www.okx.com/docs-v5/en/>, including 'REST' API and 'WebSocket' API.
 License: MIT + file LICENSE
+URL: https://github.com/fanggong/okxAPI
+BugReports: https://github.com/fanggong/okxAPI/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
