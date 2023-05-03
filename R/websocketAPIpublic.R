@@ -49,21 +49,21 @@ websocketAPIpublic <- R6::R6Class(
     },
     #' @description Initiate the connection to the server.
     connect = function() {
-      self$ws$onOpen(function(event) {
-        cat("Connection opened\n")
-      })
-
-      self$ws$onMessage(function(event) {
-        cat("Client got msg: ", event$data, "\n")
-      })
-
-      self$ws$onClose(function(event) {
-        cat("Client disconnected with code ", event$code, ": ", event$reason, "\n")
-      })
-
-      self$ws$onError(function(event) {
-        cat("Client failed to connect: ", event$message, "\n")
-      })
+      # self$ws$onOpen(function(event) {
+      #   cat("Connection opened\n")
+      # })
+      #
+      # self$ws$onMessage(function(event) {
+      #   cat("Client got msg: ", event$data, "\n")
+      # })
+      #
+      # self$ws$onClose(function(event) {
+      #   cat("Client disconnected with code ", event$code, ": ", event$reason, "\n")
+      # })
+      #
+      # self$ws$onError(function(event) {
+      #   cat("Client failed to connect: ", event$message, "\n")
+      # })
 
       self$ws$connect()
     },
