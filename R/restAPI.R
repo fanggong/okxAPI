@@ -275,6 +275,16 @@ restAPImarket <- R6::R6Class(
   "restAPImarket",
   inherit = restAPI,
   public = list(
+    #' @description See [Get order book](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-order-book) for more information.
+    #' @param instId Instrument ID, e.g. CFX-USDT
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
+    books = function(instId, process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/market/books", method = "GET", process = process,
+        instId = idntId, ...
+      )
+    },
     #' @description See [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks) for more information.
     #' @param instId Instrument ID, e.g. BTC-USD-190927-5000-C.
     #' @param process A function to process the data received from the API. Default to \code{identity}.
