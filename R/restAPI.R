@@ -119,7 +119,7 @@ restAPI <- R6::R6Class(
     #' @param msg Retrieve through method \code{get_message}.
     #' @param secret_key Okx API secret key.
     get_signature = function(msg, secret_key = self$secret_key) {
-      base64enc::base64encode(base64enc::hmac(secret_key, msg, algo = "sha256", raw = TRUE))
+      base64enc::base64encode(digest::hmac(secret_key, msg, algo = "sha256", raw = TRUE))
     },
     #' @description Get request headers.
     #' @param timestamp Retrieve through method \code{get_timestamp}.
@@ -282,7 +282,7 @@ restAPImarket <- R6::R6Class(
     books = function(instId, process = "identity", ...) {
       self$get_result(
         api = "/api/v5/market/books", method = "GET", process = process,
-        instId = idntId, ...
+        instId = instId, ...
       )
     },
     #' @description See [Get candlesticks](https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks) for more information.
