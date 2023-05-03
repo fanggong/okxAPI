@@ -12,6 +12,7 @@ Wrapper for \href{https://www.okx.com/docs-v5/en/#rest-api-market-data}{REST API
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-restAPImarket-books}{\code{restAPImarket$books()}}
 \item \href{#method-restAPImarket-candles}{\code{restAPImarket$candles()}}
 \item \href{#method-restAPImarket-history_candles}{\code{restAPImarket$history_candles()}}
 \item \href{#method-restAPImarket-clone}{\code{restAPImarket$clone()}}
@@ -31,6 +32,27 @@ Wrapper for \href{https://www.okx.com/docs-v5/en/#rest-api-market-data}{REST API
 </ul>
 </details>
 }}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-restAPImarket-books"></a>}}
+\if{latex}{\out{\hypertarget{method-restAPImarket-books}{}}}
+\subsection{Method \code{books()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-market-data-get-order-book}{Get order book} for more information.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{restAPImarket$books(instId, process = "identity", ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{instId}}{Instrument ID, e.g. CFX-USDT}
+
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
+}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-restAPImarket-candles"></a>}}
 \if{latex}{\out{\hypertarget{method-restAPImarket-candles}{}}}
