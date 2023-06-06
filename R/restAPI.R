@@ -193,7 +193,7 @@ restAPItrade <- R6::R6Class(
     #' \code{optimal_limit_ioc}: Market order with immediate-or-cancel order (applicable only to Futures and Perpetual swap).
     #' @param process A function to process the data received from the API. Default to \code{identity}.
     #' @param ... Other request parameters.
-    order  = function(
+    order = function(
       instId, tdMode = c("isolated", "cross", "cash"), side = c("buy", "sell"), sz,
       ordType = c("market", "limit", "post_only", "fok", "ioc", "optimal_limit_ioc"),
       process = "identity", ...
@@ -219,6 +219,30 @@ restAPItrade <- R6::R6Class(
       self$get_result(
         api = "/api/v5/trade/cancel-order", method = "POST", process = process,
         instId = instId, ordId = ordId, clOrdId = clOrdId, ...
+      )
+    },
+    #' @description See [Get order details](https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-details) for more information.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
+    orders = function(process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/trade/order", method = "GET", process = process, ...
+      )
+    },
+    #' @description See [Get order List](https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-list) for more information.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
+    orders_pending = function(process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/trade/orders-pending", method = "GET", process = process, ...
+      )
+    },
+    #' @description See [Get algo order list](https://www.okx.com/docs-v5/en/#rest-api-trade-get-algo-order-list) for more information.
+    #' @param process A function to process the data received from the API. Default to \code{identity}.
+    #' @param ... Other request parameters.
+    orders_algo_pending = function(process = "identity", ...) {
+      self$get_result(
+        api = "/api/v5/trade/orders-algo-pending", method = "GET", process = process, ...
       )
     }
   )

@@ -8,8 +8,9 @@ get_positions_history(
   api_key,
   secret_key,
   passphrase,
-  count = 90,
-  period = 10,
+  before,
+  after,
+  period,
   ...
 )
 }
@@ -20,10 +21,12 @@ get_positions_history(
 
 \item{passphrase}{Okx API passphrase.}
 
-\item{count}{Retrieve position data for a specified number of past days, with a maximum of 90(days)}
+\item{before}{POSIXct type. Return records newer than \code{before}.}
+
+\item{after}{POSIXct type. Return records earlier than \code{after}.}
 
 \item{period}{Due to the 'Number of results per request' limitation of the API,
-the \code{period} parameter must be specified to ensure that the number of position data entries within each period does not exceed 100.}
+the \code{period} parameter must be specified to ensure that the number of position data entries within each period(unit: second) does not exceed 100.}
 
 \item{...}{Other request parameters to be passed, See
 \href{https://www.okx.com/docs-v5/en/#rest-api-account-get-positions-history}{Get positions history} for more information.}

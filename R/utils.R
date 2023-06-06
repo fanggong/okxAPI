@@ -28,3 +28,35 @@ str2period <- function(str) {
   )
   time_vec[str]
 }
+
+
+numeric_fields <- function() {
+  c(
+    "accFillSz", "activePx", "actualPx", "actualSz", "adl", "availPos", "avgPx",
+    "baseBal", "baseBorrowed", "baseInterest", "bizRefType",
+    "callbackRatio", "callbackSpread", "closeFraction",
+    "deltaBS", "deltaPA",
+    "failCode", "fee", "fillPx", "fillSz",
+    "gammaBS", "gammaPA",
+    "imr", "interest",
+    "last", "lever", "liab", "liqPx",
+    "margin", "markPx", "mgnRatio", "mmr", "moveTriggerPx",
+    "notionalUsd",
+    "optVal", "ordPx",
+    "pendingCloseOrdLiabVal", "pnl", "pos", "px", "pxLimit", "pxSpread", "pxVar",
+    "quoteBal", "quoteBorrowed", "quoteInterest",
+    "rebate",
+    "slOrdPx", "slTriggerPx", "slTriggerPxType", "source", "spotInUseAmt", "state", "sz", "szLimit",
+    "tdMode", "thetaBS", "thetaPA", "timeInterval", "tpOrdPx", "tpTriggerPx", "triggerPx", "triggerTime",
+    "upl", "uplLastPx", "uplRatio", "uplRatioLastPx", "usdPx",
+    "vegaBS", "vegaPA"
+  )
+}
+
+
+time_fields <- function() {
+  c(
+    "cTime", "uTime", "fillTime"
+  )
+}
+

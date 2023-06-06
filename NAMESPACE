@@ -2,6 +2,8 @@
 
 export(get_history_candles)
 export(get_positions_history)
+export(process_market_books)
+export(process_standard)
 export(restAPI)
 export(restAPIaccount)
 export(restAPImarket)

@@ -14,6 +14,9 @@ Wrapper for \href{https://www.okx.com/docs-v5/en/#rest-api-trade}{REST API TRADE
 \itemize{
 \item \href{#method-restAPItrade-order}{\code{restAPItrade$order()}}
 \item \href{#method-restAPItrade-cancel_order}{\code{restAPItrade$cancel_order()}}
+\item \href{#method-restAPItrade-orders}{\code{restAPItrade$orders()}}
+\item \href{#method-restAPItrade-orders_pending}{\code{restAPItrade$orders_pending()}}
+\item \href{#method-restAPItrade-orders_algo_pending}{\code{restAPItrade$orders_algo_pending()}}
 \item \href{#method-restAPItrade-clone}{\code{restAPItrade$clone()}}
 }
 }
@@ -88,6 +91,63 @@ See \href{https://www.okx.com/docs-v5/en/#rest-api-trade-cancel-order}{Cancel or
 
 \item{\code{clOrdId}}{Client Order ID as assigned by the client.}
 
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-restAPItrade-orders"></a>}}
+\if{latex}{\out{\hypertarget{method-restAPItrade-orders}{}}}
+\subsection{Method \code{orders()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-details}{Get order details} for more information.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{restAPItrade$orders(process = "identity", ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-restAPItrade-orders_pending"></a>}}
+\if{latex}{\out{\hypertarget{method-restAPItrade-orders_pending}{}}}
+\subsection{Method \code{orders_pending()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-list}{Get order List} for more information.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{restAPItrade$orders_pending(process = "identity", ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
+
+\item{\code{...}}{Other request parameters.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-restAPItrade-orders_algo_pending"></a>}}
+\if{latex}{\out{\hypertarget{method-restAPItrade-orders_algo_pending}{}}}
+\subsection{Method \code{orders_algo_pending()}}{
+See \href{https://www.okx.com/docs-v5/en/#rest-api-trade-get-algo-order-list}{Get algo order list} for more information.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{restAPItrade$orders_algo_pending(process = "identity", ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
 \item{\code{process}}{A function to process the data received from the API. Default to \code{identity}.}
 
 \item{\code{...}}{Other request parameters.}

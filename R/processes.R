@@ -1,3 +1,4 @@
+
 #' @export
 process_market_books <- function(response) {
   bids <- response$data[[1]]$bids
@@ -19,4 +20,22 @@ process_market_books <- function(response) {
   res[, (to_numeric) := lapply(.SD, as.numeric), .SDcols = to_numeric]
 
   res[order(price, decreasing = TRUE), .(ts, price, sz, order_number, direction)]
+}
+
+
+#' @export
+process_standard <- function(response) {
+  res <- response$data
+  res <- lapply(res, data.table::as.data.table)
+  res <- data.table::rbindlist(res)
+
+  to_numeric <- numeric_fields()[numeric_fields() %in% names(res)]
+  if (length(to_numeric) > 0) {
+    res[, (to_numeric) := lapply(.SD, as.numeric), .SDcols = to_numeric]
+  }
+
+  to_time <- time_fields()[time_fields() %in% names(res)]
+  if (length(to_time) > 0) {
+    res[, (to_time) := lapply(.SD, ts2time), .SDcols = to_time]
+  }
 }
